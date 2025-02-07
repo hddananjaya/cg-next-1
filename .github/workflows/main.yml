@@ -11,10 +11,13 @@ jobs:
     steps:
       - name: Send HTTP Request
         run: |
-          curl -X POST "https://gencode-api.hirednow.ai/web-api/servers/trigger-deployment" \
-          -H "Content-Type: application/json" \
+          curl -X POST "https://gencode-api.hirednow.ai/web-api/servers/trigger-deployment" \\
+          -H "Content-Type: application/json" \\
+          --retry 5 \\
+          --retry-delay 2 \\
+          -v \\
           -d '{
-            "repository": "${{ github.repository }}",
-            "branch": "${{ github.ref }}",
-            "commit": "${{ github.sha }}"
+            "repository": "\${{ github.repository }}",
+            "branch": "\${{ github.ref }}",
+            "commit": "\${{ github.sha }}"
           }'
