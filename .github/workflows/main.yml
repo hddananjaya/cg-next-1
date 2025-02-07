@@ -12,9 +12,9 @@ jobs:
       - name: Send HTTP Request
         run: |
           curl -X POST "https://gencode-api.hirednow.ai/web-api/servers/trigger-deployment" \\
-          -H "Content-Type: application/json" \\
           --retry 5 \\
           --retry-delay 2 \\
+          -H "Content-Type: application/json" \\
           -v \\
           -d '{
             "repository": "\${{ github.repository }}",
